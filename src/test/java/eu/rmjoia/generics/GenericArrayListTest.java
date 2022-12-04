@@ -6,16 +6,16 @@ import org.junit.jupiter.api.Test;
 public class GenericArrayListTest {
 
     @Test
-    void StringArrayList_CanAdd_DoesNotThrow() {
+    void PersonArrayList_CanAdd_DoesNotThrow() {
 
         var itemToAdd = "Almada";
-        var stringArrayList = new GenericArrayList<String>();
+        var PersonArrayList = new GenericArrayList<String>();
 
-        stringArrayList.add(itemToAdd);
+        PersonArrayList.add(itemToAdd);
     }
 
     @Test
-    void StringArrayList_Size_ReturnsCorrectValue() {
+    void IntArrayList_Size_ReturnsCorrectValue() {
 
         var itemToAdd1 = 1;
         var itemToAdd2 = 2;
@@ -30,194 +30,214 @@ public class GenericArrayListTest {
     }
 
     @Test
-    void StringArrayList_get_ReturnsValueAtIndex() {
+    void PersonArrayList_get_ReturnsValueAtIndex() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(itemToAdd);
+        personArrayList.add(itemToAdd);
 
-        Assertions.assertEquals("Maria", dummyArrayList.get(0).getFirstname());
+        Assertions.assertEquals("Maria", personArrayList.get(0).getFirstname());
     }
 
     @Test
-    void StringArrayList_get_ThrowsOutOfIndexException() {
+    void PersonArrayList_get_ThrowsOutOfIndexException() {
 
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            dummyArrayList.get(10);
+            personArrayList.get(10);
         }, "Index out of Bounds");
     }
 
     @Test
-    void StringArrayList_add_ThrowsOutOfIndexException() {
+    void PersonArrayList_add_ThrowsOutOfIndexException() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            dummyArrayList.add(10, itemToAdd);
+            personArrayList.add(10, itemToAdd);
         }, "Index out of Bounds");
     }
 
     @Test
-    void StringArrayList_set_ReturnsAddedItem() {
+    void PersonArrayList_set_ReturnsAddedItem() {
         var name = "Maria";
         var itemToAdd = new Person(14, "Joia", name);
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        var result = dummyArrayList.set(1, itemToAdd);
+        var result = personArrayList.set(1, itemToAdd);
 
         Assertions.assertEquals(name, result.getFirstname());
     }
 
     @Test
-    void StringArrayList_set_ThrowsOutOfIndexException() {
+    void PersonArrayList_set_ThrowsOutOfIndexException() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            dummyArrayList.add(10, itemToAdd);
+            personArrayList.set(10, itemToAdd);
         }, "Index out of Bounds");
     }
 
     @Test
-    void StringArrayList_isEmpty_ReturnsTrueWhenEmpty() {
+    void PersonArrayList_isEmpty_ReturnsTrueWhenEmpty() {
 
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        Assertions.assertEquals(true, dummyArrayList.isEmpty());
+        Assertions.assertEquals(true, personArrayList.isEmpty());
     }
 
     @Test
-    void StringArrayList_isEmpty_ReturnsFalseWhenNotEmpty() {
+    void PersonArrayList_isEmpty_ReturnsFalseWhenNotEmpty() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(itemToAdd);
+        personArrayList.add(itemToAdd);
 
-        Assertions.assertEquals(false, dummyArrayList.isEmpty());
+        Assertions.assertEquals(false, personArrayList.isEmpty());
     }
 
     @Test
-    void StringArrayList_removeAtIndex_ReturnsRemovedItem() {
+    void PersonArrayList_removeAtIndex_ReturnsRemovedItem() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(itemToAdd);
+        personArrayList.add(itemToAdd);
 
-        Assertions.assertEquals(1, dummyArrayList.size());
+        Assertions.assertEquals(1, personArrayList.size());
 
-        var result = dummyArrayList.remove(0);
+        var result = personArrayList.remove(0);
 
         Assertions.assertEquals("Maria", result.getFirstname());
-        Assertions.assertEquals(0, dummyArrayList.size());
+        Assertions.assertEquals(0, personArrayList.size());
     }
 
     @Test
-    void StringArrayList_removeAtIndex_ThrowsIfOutOfRange() {
+    void PersonArrayList_removeAtIndex_ThrowsIfOutOfRange() {
 
         var itemToAdd = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            dummyArrayList.remove(1);
+            personArrayList.remove(1);
         }, "Index out of Bounds");
     }
 
     @Test
-    void StringArrayList_removeElement_ReturnsTrueWhenItemIsFoundAndRemoved() {
+    void PersonArrayList_removeElement_ReturnsTrueWhenItemIsFoundAndRemoved() {
 
         var item = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(item);
+        personArrayList.add(item);
 
-        Assertions.assertEquals(1, dummyArrayList.size());
+        Assertions.assertEquals(1, personArrayList.size());
 
-        var result = dummyArrayList.remove(item);
+        var result = personArrayList.remove(item);
 
         Assertions.assertEquals(true, result);
-        Assertions.assertEquals(0, dummyArrayList.size());
+        Assertions.assertEquals(0, personArrayList.size());
     }
 
     @Test
-    void StringArrayList_removeElement_ReturnsFalseWhenItemIsNotFoundAndNotRemoved() {
+    void PersonArrayList_removeElement_ReturnsFalseWhenItemIsNotFoundAndNotRemoved() {
 
         var addedItem = new Person(4, "Joia", "Martin");
         var itemToRemove = new Person(19, "Joia", "Miguel");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(addedItem);
+        personArrayList.add(addedItem);
 
-        Assertions.assertEquals(1, dummyArrayList.size());
+        Assertions.assertEquals(1, personArrayList.size());
 
-        var result = dummyArrayList.remove(itemToRemove);
+        var result = personArrayList.remove(itemToRemove);
 
         Assertions.assertEquals(false, result);
-        Assertions.assertEquals(1, dummyArrayList.size());
+        Assertions.assertEquals(1, personArrayList.size());
     }
 
     @Test
-    void StringArrayList_contains_ReturnsTrueWhenArrayListContainsElement() {
+    void PersonArrayList_contains_ReturnsTrueWhenArrayListContainsElement() {
 
         var addedItem1 = new Person(4, "Joia", "Martin");
         var addedItem2 = new Person(19, "Joia", "Miguel");
         var addedItem3 = new Person(42, "Joia", "Ricardo");
         var addedItem4 = new Person(14, "Joia", "Maria");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(addedItem1);
-        dummyArrayList.add(addedItem2);
-        dummyArrayList.add(addedItem3);
-        dummyArrayList.add(addedItem4);
+        personArrayList.add(addedItem1);
+        personArrayList.add(addedItem2);
+        personArrayList.add(addedItem3);
+        personArrayList.add(addedItem4);
 
-        var result = dummyArrayList.contains(addedItem1);
+        var result = personArrayList.contains(addedItem1);
 
         Assertions.assertEquals(true, result);
     }
 
     @Test
-    void StringArrayList_contains_ReturnsFalseWhenArrayListDoesNotContainElement() {
+    void PersonArrayList_contains_ReturnsFalseWhenArrayListDoesNotContainElement() {
 
         var addedItem1 = new Person(4, "Joia", "Martin");
         var addedItem2 = new Person(19, "Joia", "Miguel");
         var addedItem3 = new Person(42, "Joia", "Ricardo");
         var addedItem4 = new Person(14, "Joia", "Maria");
         var notAddedItem = new Person(46, "Nunes", "Ana");
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(addedItem1);
-        dummyArrayList.add(addedItem2);
-        dummyArrayList.add(addedItem3);
-        dummyArrayList.add(addedItem4);
+        personArrayList.add(addedItem1);
+        personArrayList.add(addedItem2);
+        personArrayList.add(addedItem3);
+        personArrayList.add(addedItem4);
 
-        var result = dummyArrayList.contains(notAddedItem);
+        var result = personArrayList.contains(notAddedItem);
 
         Assertions.assertEquals(false, result);
     }
 
     @Test
-    void StringArrayList_iterator_ReturnsItemsInArrayList() {
+    void PersonArrayList_iterator_ReturnsItemsInArrayList() {
 
         var addedItem1 = new Person(4, "Joia", "Martin");
         var addedItem2 = new Person(19, "Joia", "Miguel");
         var addedItem3 = new Person(42, "Joia", "Ricardo");
         var addedItem4 = new Person(14, "Joia", "Maria");
 
-        var dummyArrayList = new GenericArrayList<Person>();
+        var personArrayList = new GenericArrayList<Person>();
 
-        dummyArrayList.add(addedItem1);
-        dummyArrayList.add(addedItem2);
-        dummyArrayList.add(addedItem3);
-        dummyArrayList.add(addedItem4);
+        personArrayList.add(addedItem1);
+        personArrayList.add(addedItem2);
+        personArrayList.add(addedItem3);
+        personArrayList.add(addedItem4);
 
-        for (var item = dummyArrayList.iterator(); item.hasNext(); ) {
+        for (var item = personArrayList.iterator(); item.hasNext(); ) {
             Assertions.assertEquals(true, !item.next().getSurname().isEmpty());
         }
+    }
+
+    @Test
+    void PersonArrayList_toString_ReturnsStringWithListOfItems() {
+
+        var addedItem1 = new Person(4, "Joia", "Martin");
+        var addedItem2 = new Person(19, "Joia", "Miguel");
+        var addedItem3 = new Person(42, "Joia", "Ricardo");
+
+        var personArrayList = new GenericArrayList<Person>();
+
+        personArrayList.add(addedItem1);
+        personArrayList.add(addedItem2);
+        personArrayList.add(addedItem3);
+
+        Assertions.assertEquals(
+                " -> Person{firstname='" + addedItem1.getFirstname() + "', surname='" + addedItem1.getSurname() + "', age=" + addedItem1.getAge() + "}" +
+                " -> Person{firstname='" + addedItem2.getFirstname() + "', surname='" + addedItem2.getSurname() + "', age=" + addedItem2.getAge() + "}" +
+                " -> Person{firstname='" + addedItem3.getFirstname() + "', surname='" + addedItem3.getSurname() + "', age=" + addedItem3.getAge() + "}",
+                personArrayList.toString());
     }
 }

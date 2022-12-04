@@ -1,5 +1,7 @@
 package eu.rmjoia.generics;
 
+import java.util.Objects;
+
 public class Person implements Comparable<Person> {
     private String firstname;
     private String surname;

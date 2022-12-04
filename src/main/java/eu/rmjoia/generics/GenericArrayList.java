@@ -6,16 +6,15 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class GenericArrayList<T> implements IList<T> {
+    private static final int INITIAL_CAPACITY = 0;
 
     private T[] buffer;
     private int nextAvailableSlot;
     private int currentCapacity;
 
-    private static final int INITIAL_CAPACITY = 0;
-
     public GenericArrayList() {
         currentCapacity = INITIAL_CAPACITY;
-        nextAvailableSlot = 0;
+        nextAvailableSlot = INITIAL_CAPACITY;
         buffer = (T[]) new Object[currentCapacity];
     }
 
@@ -111,6 +110,18 @@ public class GenericArrayList<T> implements IList<T> {
     @Override
     public Iterator<T> iterator() {
         return new GenericArrayListIterator();
+    }
+
+    @Override
+    public String toString() {
+
+        var stringToRetun = "";
+
+        var thisList = this.iterator();
+        while (thisList.hasNext()) {
+            stringToRetun += " -> " + thisList.next();
+        }
+            return stringToRetun;
     }
 
     private void expandArraySizeIfNeeded() {
