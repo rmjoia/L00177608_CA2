@@ -31,7 +31,19 @@ public class GenericArrayList<T> implements IList<T> {
 
         throwIfIndexInvalid(index);
 
-        add(element);
+        if (index == 0) {
+            add(element);
+        } else if (index == nextAvailableSlot) {
+            add(element);
+        } else {
+
+            for (int i = nextAvailableSlot; i > index; i--) {
+                buffer[i] = buffer[i - 1];
+            }
+
+            buffer[index] = element;
+            nextAvailableSlot++;
+        }
     }
 
     @Override
@@ -117,11 +129,10 @@ public class GenericArrayList<T> implements IList<T> {
 
         var stringToRetun = "";
 
-        var thisList = this.iterator();
-        while (thisList.hasNext()) {
-            stringToRetun += " -> " + thisList.next();
+        for (T t : this) {
+            stringToRetun += " -> " + t;
         }
-            return stringToRetun;
+        return stringToRetun;
     }
 
     private void expandArraySizeIfNeeded() {
@@ -143,8 +154,9 @@ public class GenericArrayList<T> implements IList<T> {
         }
     }
 
-    class GenericArrayListIterator implements Iterator<T>{
+    class GenericArrayListIterator implements Iterator<T> {
         private int cursor = 0;
+
         /**
          * Returns {@code true} if the iteration has more elements.
          * (In other words, returns {@code true} if {@link #next} would
@@ -156,6 +168,7 @@ public class GenericArrayList<T> implements IList<T> {
         public boolean hasNext() {
             return cursor < nextAvailableSlot;
         }
+
         /**
          * Returns the next element in the iteration.
          *
@@ -164,11 +177,12 @@ public class GenericArrayList<T> implements IList<T> {
          */
         @Override
         public T next() {
-            if(cursor == nextAvailableSlot){
+            if (cursor == nextAvailableSlot) {
                 throw new NoSuchElementException();
             }
             return buffer[cursor++];
         }
+
         @Override
         //You do not have to provide functionality for the remove() method
         //We already have (non-iterator) mechanism for removing elements

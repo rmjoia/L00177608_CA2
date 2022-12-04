@@ -67,9 +67,24 @@ public class GenericArrayListTest {
         var itemToAdd = new Person(14, "Joia", name);
         var personArrayList = new GenericArrayList<Person>();
 
-        var result = personArrayList.set(1, itemToAdd);
+        var result = personArrayList.set(5, itemToAdd);
 
         Assertions.assertEquals(name, result.getFirstname());
+        Assertions.assertEquals(1, personArrayList.size());
+    }
+
+    @Test
+    void PersonArrayList_set_ReturnsAddedItemOnPosition5() {
+        var name = "Maria";
+        var itemToAdd1 = new Person(4, "Joia", "Martin");
+        var itemToAdd2 = new Person(14, "Joia", name);
+        var personArrayList = new GenericArrayList<Person>();
+
+        personArrayList.add(itemToAdd1);
+        var result = personArrayList.set(3, itemToAdd2);
+
+        Assertions.assertEquals(name, result.getFirstname());
+        Assertions.assertEquals(2, personArrayList.size());
     }
 
     @Test
